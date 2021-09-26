@@ -20,21 +20,21 @@ struct TimerClass
     TimerClass(void)
     {
         timestamp =  std::time(0);  /* save current time*/
-		
+        
         printf("timestamp creation in saved format:    %ld \n", timestamp);
-        printf("timestamp creation in readable format: %s \n",std::asctime(std::localtime(&(this->timestamp)))); /* print it in a human readable format*/		
+        printf("timestamp creation in readable format: %s \n",std::asctime(std::localtime(&(this->timestamp)))); /* print it in a human readable format*/        
     }
     
-	
-	~TimerClass(void)
+    
+    ~TimerClass(void)
     {
-		time_t end_time = std::time(0);
-		
+        time_t end_time = std::time(0);
+        
         end_time =  std::time(0);  /* save current time*/
-		
-		printf("timestamp destruction in saved format: %ld \n", end_time);
-		printf("timestamp difference in seconds:       %ld \n",  end_time - (this->timestamp));
-		
+        
+        printf("timestamp destruction in saved format: %ld \n", end_time);
+        printf("timestamp difference in seconds:       %ld \n",  end_time - (this->timestamp));
+        
     }
      
     private:
@@ -44,5 +44,5 @@ struct TimerClass
 int main(void)
 {
     TimerClass myTimer;           /* object myTimer is created */
-	sleep(5);		              /* wait some seconds before invoking destructor */
+    sleep(5);                      /* wait some seconds before invoking destructor */
 }
