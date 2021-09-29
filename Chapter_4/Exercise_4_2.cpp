@@ -8,41 +8,46 @@
  
  * \date last change: 26.09.2021
  * \author            amaia
+ 
+ * timersub(..)
+ * https://man7.org/linux/man-pages/man3/timeradd.3.html
  */
  
-#include <ctime>
 #include <cstdio>
+#include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
- 
+
 struct TimerClass
 {
     
     TimerClass(void)
     {
-        timestamp =  std::time(0);  /* save current time*/
-        
-        printf("timestamp creation in saved format:    %ld \n", timestamp);
-        printf("timestamp creation in readable format: %s \n",std::asctime(std::localtime(&(this->timestamp)))); /* print it in a human readable format*/        
+        gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
     }
     
-    
+ 
     ~TimerClass(void)
     {
-        time_t end_time = std::time(0);
-        
-        end_time =  std::time(0);  /* save current time*/
-        
-        printf("timestamp destruction in saved format: %ld \n", end_time);
-        printf("timestamp difference in seconds:       %ld \n",  end_time - (this->timestamp));
+		timeval s_endtime, s_dif; 
+
+        gettimeofday(&s_endtime,0);    /* it returns an struct with seconds and microsenconds*/        
+		timersub(&s_endtime ,&s_timestamp , &s_dif);
+		
+        printf("Elapsed time:  %lds; %ldms\n", s_dif.tv_sec, s_dif.tv_usec);
+
         
     }
-     
+	
     private:
-    time_t timestamp;              /* timestamp of objects creation time */
+    timeval s_timestamp;           /* struct timeval with two fields, seconds and us*/
 };
  
 int main(void)
 {
     TimerClass myTimer;           /* object myTimer is created */
-    sleep(5);                      /* wait some seconds before invoking destructor */
+    sleep(3);
 }
+    
+
+     
