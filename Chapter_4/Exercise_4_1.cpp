@@ -26,14 +26,14 @@ struct TimerClass
     
     TimerClass(void)
     {
-        timestamp =  time(0);       /* save current time, precission is only seconds!!*/
-		gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
+        timestamp =  time(0);            /* save current time, precission is only seconds!!*/
+        gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
     }
     
     void PrintCreationTime(void)
     {
-        printf("time returns:    %lu \n", timestamp);
-        printf("gettimeofday(..) returns: %lu, %lu \n",s_timestamp.tv_sec, s_timestamp.tv_usec);
+        printf("time(0) returns:    %lu \n", timestamp);
+        printf("gettimeofday(&s_timestamp,0): %lu, %lu \n",s_timestamp.tv_sec, s_timestamp.tv_usec);
         printf("timestamp in readable format: %s \n",asctime(localtime(&(this->timestamp)))); /* print it in a human readable format*/
 		
 		
@@ -41,7 +41,7 @@ struct TimerClass
      
     private:
     time_t timestamp;              /* timestamp in seconds of objects creation time */
-	timeval s_timestamp;
+    timeval s_timestamp;           /* struct timeval with two fields, seconds and ms*/
 };
  
 int main(void)
