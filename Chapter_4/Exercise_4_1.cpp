@@ -7,27 +7,41 @@
  
  * \date last change: 25.09.2021
  * \author            amaia
+ * 
+ *  Read:
+ *  time(...) . Time in seconds
+ * https://man7.org/linux/man-pages/man2/time.2.html
+ 
+ * gettimeofday(...); Time and seconds and milliseconds
+ * https://man7.org/linux/man-pages/man2/settimeofday.2.html
  */
  
-#include <ctime>
+//#include <ctime>
 #include <cstdio>
- 
+#include <sys/time.h>
+#include <time.h>
+
 struct TimerClass
 {
     
     TimerClass(void)
     {
-        timestamp =  std::time(0);  /* save current time*/
+        timestamp =  time(0);       /* save current time, precission is only seconds!!*/
+		gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
     }
     
     void PrintCreationTime(void)
     {
-        printf("timestamp in saved format:    %ld \n", timestamp);
-        printf("timestamp in readable format: %s \n",std::asctime(std::localtime(&(this->timestamp)))); /* print it in a human readable format*/
-    }
+        printf("time returns:    %lu \n", timestamp);
+        printf("gettimeofday(..) returns: %lu, %lu \n",s_timestamp.tv_sec, s_timestamp.tv_usec);
+        printf("timestamp in readable format: %s \n",asctime(localtime(&(this->timestamp)))); /* print it in a human readable format*/
+		
+		
+	}
      
     private:
-    time_t timestamp;              /* timestamp of objects creation time */
+    time_t timestamp;              /* timestamp in seconds of objects creation time */
+	timeval s_timestamp;
 };
  
 int main(void)
