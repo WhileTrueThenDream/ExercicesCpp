@@ -27,7 +27,7 @@ struct TimerClass
     TimerClass(void)
     {
         timestamp =  time(0);            /* save current time, precission is only seconds!!*/
-        gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
+        gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and microsenconds*/
     }
     
     void PrintCreationTime(void)
@@ -41,7 +41,7 @@ struct TimerClass
      
     private:
     time_t timestamp;              /* timestamp in seconds of objects creation time */
-    timeval s_timestamp;           /* struct timeval with two fields, seconds and ms*/
+    timeval s_timestamp;           /* struct timeval with two fields, seconds and us*/
 };
  
 int main(void)
