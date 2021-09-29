@@ -29,16 +29,16 @@ struct TimerClass
  
     ~TimerClass(void)
     {
-		timeval s_endtime, s_dif; 
+        timeval s_endtime, s_dif; 
 
         gettimeofday(&s_endtime,0);    /* it returns an struct with seconds and microsenconds*/        
-		timersub(&s_endtime ,&s_timestamp , &s_dif);
-		
+        timersub(&s_endtime ,&s_timestamp , &s_dif);
+        
         printf("Elapsed time:  %lds; %ldms\n", s_dif.tv_sec, s_dif.tv_usec);
 
         
     }
-	
+    
     private:
     timeval s_timestamp;           /* struct timeval with two fields, seconds and us*/
 };
