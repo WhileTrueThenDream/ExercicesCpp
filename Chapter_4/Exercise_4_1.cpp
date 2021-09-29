@@ -35,9 +35,9 @@ struct TimerClass
         printf("time(0) returns:    %lu \n", timestamp);
         printf("gettimeofday(&s_timestamp,0): %lu, %lu \n",s_timestamp.tv_sec, s_timestamp.tv_usec);
         printf("timestamp in readable format: %s \n",asctime(localtime(&(this->timestamp)))); /* print it in a human readable format*/
-		
-		
-	}
+        
+        
+    }
      
     private:
     time_t timestamp;              /* timestamp in seconds of objects creation time */
