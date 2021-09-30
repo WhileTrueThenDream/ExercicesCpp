@@ -15,11 +15,10 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-#include <utility>
 #include <cstring>
      
 struct TimerClass
-{       
+{      
     TimerClass(const char* name)
     {
         gettimeofday(&s_timestamp,0);  
@@ -27,7 +26,8 @@ struct TimerClass
     }
 
     TimerClass(const TimerClass& other)              /* Copy constructor */
-    : s_timestamp {other.s_timestamp}  
+    : s_timestamp {other.s_timestamp}
+      
     {    
         strncpy(&timername[0], other.timername, (sizeof(timername)-1));   
     }
@@ -51,7 +51,7 @@ struct TimerClass
     : s_timestamp {other.s_timestamp},
       moved_from{true}
     {
-          strncpy(&timername[0], other.timername, (sizeof(timername)-1));
+        strncpy(&timername[0], other.timername, (sizeof(timername)-1));
     }   
     
     TimerClass& operator=(const TimerClass&& other)    /* Move assignment operator*/
@@ -77,15 +77,17 @@ struct TimerClass
         gettimeofday(&s_endtime,0);        
         timersub(&s_endtime ,&s_timestamp , &s_dif);
         
-        printf("\n timer: %s Elapsed time:  %lds; %ldms\n",&timername[0], s_dif.tv_sec, s_dif.tv_usec);      
+        printf("Timer: %s Init: %lds; %ldms;\t End: %lds; %ldms;\n",&timername[0], s_timestamp.tv_sec, s_timestamp.tv_usec,s_endtime.tv_sec,s_endtime.tv_usec);
+        printf("       >> diff: %lds; %ldms;\n", s_dif.tv_sec, s_dif.tv_usec);      
+        if(moved_from) printf("This timer was moved-from !!! \n\n");
     }
          
     private:
-      timeval s_timestamp;           /* struct timeval with two fields, seconds and us*/
-      char timername[10];            /* timers name, 9 chars length max. */
-      bool moved_from = false;       /* true if you were moved from, false if not */
+        timeval s_timestamp;           /* struct timeval with two fields, seconds and us */
+        char timername[10];            /* timers name, 9 chars length max. */
+        bool moved_from = false;       /* true if you were moved from, false if not */
 };
-     
+
 int main(void)
 {
     TimerClass myTimer{"Timer_1"}; 
@@ -97,6 +99,5 @@ int main(void)
         var3 = 33.8/(0.75*var1 + 0.85*var2)/25.2;
     }
     
-    printf("value of var3: %f \n", var3);
     return 0;    
 }
