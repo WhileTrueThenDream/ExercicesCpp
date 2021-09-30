@@ -28,7 +28,7 @@ struct TimerClass
     : s_timestamp {other.s_timestamp}
 	  
     {    
-         strncpy(&timername[0], other.timername, (sizeof(timername)-1));   
+        strncpy(&timername[0], other.timername, (sizeof(timername)-1));   
     }
 	
     TimerClass& operator=(const TimerClass& other)   /* Copy assignment operator */
@@ -61,9 +61,9 @@ struct TimerClass
         }
         else
         {
-	    this->moved_from  = true;			
+	        this->moved_from  = true;			
             this->s_timestamp   = other.s_timestamp;
-	    strncpy(&timername[0], timername, (sizeof(timername)-1));
+	        strncpy(&timername[0], timername, (sizeof(timername)-1));
         }
 		
         return *this;                
