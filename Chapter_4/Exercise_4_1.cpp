@@ -5,7 +5,7 @@
  * Create a struct TimerClass. In its constructor, record the current time
  * in a field called timestamp (compare with the POSIX function gettimeofday).
  
- * \date last change: 25.09.2021
+ * \date last change: 30.09.2021
  * \author            amaia
  * 
  *  Read:
@@ -23,7 +23,6 @@
 
 struct TimerClass
 {
-    
     TimerClass(void)
     {
         timestamp =  time(0);            /* save current time, precission is only seconds!!*/
@@ -34,9 +33,7 @@ struct TimerClass
     {
         printf("time(0) returns:    %lu \n", timestamp);
         printf("gettimeofday(&s_timestamp,0): %lu, %lu \n",s_timestamp.tv_sec, s_timestamp.tv_usec);
-        printf("timestamp in readable format: %s \n",asctime(localtime(&(this->timestamp)))); /* print it in a human readable format*/
-        
-        
+        printf("timestamp in readable format: %s \n",asctime(localtime(&(this->timestamp)))); /* print it in a human readable format*/ 
     }
      
     private:
