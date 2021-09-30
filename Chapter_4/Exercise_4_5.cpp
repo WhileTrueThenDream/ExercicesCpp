@@ -77,14 +77,14 @@ struct TimerClass
         timersub(&s_endtime ,&s_timestamp , &s_dif);
         
         printf("Timer: %s Init: %lds; %ldms;\t End: %lds; %ldms;\n",&timername[0], s_timestamp.tv_sec, s_timestamp.tv_usec,s_endtime.tv_sec,s_endtime.tv_usec);
-	printf("       >> diff: %lds; %ldms;\n", s_dif.tv_sec, s_dif.tv_usec);  	
-       if(moved_from) printf("This timer was moved-from !!! \n\n");
+	    printf("       >> diff: %lds; %ldms;\n", s_dif.tv_sec, s_dif.tv_usec);  	
+        if(moved_from) printf("This timer was moved-from !!! \n\n");
     }
          
     private:
         timeval s_timestamp;           /* struct timeval with two fields, seconds and us */
-	char timername[10];            /* timers name, 9 chars length max. */
-	bool moved_from = false;       /* true if you were moved from, false if not */
+	    char timername[10];            /* timers name, 9 chars length max. */
+	    bool moved_from = false;       /* true if you were moved from, false if not */
 };
      
 int main(void)
