@@ -22,7 +22,7 @@ struct TimerClass
     {
         gettimeofday(&s_timestamp,0);                /* it returns an struct with seconds and milliseconds*/
 
-		printf("Constructor invoked; timestamp: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec);
+        printf("Constructor invoked; timestamp: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec);
     }
      
       
@@ -31,7 +31,7 @@ struct TimerClass
     {    
         printf("Copy constructor invoked. timestamp: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec);  
     }
-	
+          
     TimerClass& operator=(const TimerClass& other)   /* Copy assignment operator */
     {
         if(this == &other) 
@@ -42,22 +42,22 @@ struct TimerClass
         {
             this->s_timestamp = other.s_timestamp;
         }
-		
-        printf("Copy assignment operator invoked. timestamp: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec);   		 
+                    
+        printf("Copy assignment operator invoked. timestamp: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec);                        
         return *this;                
     }
-    		
+                        
     ~TimerClass(void)
     {
         timeval s_endtime, s_dif; 
 
         gettimeofday(&s_endtime,0);        
         timersub(&s_endtime ,&s_timestamp , &s_dif);
-		
+                    
         printf("** Timer destructor invoked **\n");
-		printf("Initial time: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec); 
-		printf("End time:     %lds; %ldms\n", s_endtime.tv_sec, s_endtime.tv_usec); 
-        printf("Elapsed time: %lds; %ldms\n\n", s_dif.tv_sec, s_dif.tv_usec);  			
+        printf("Initial time: %lds; %ldms\n", s_timestamp.tv_sec, s_timestamp.tv_usec); 
+        printf("End time:     %lds; %ldms\n", s_endtime.tv_sec, s_endtime.tv_usec); 
+        printf("Elapsed time: %lds; %ldms\n\n", s_dif.tv_sec, s_dif.tv_usec);                                
     }
 
     private:
@@ -66,12 +66,12 @@ struct TimerClass
      
 int main(void)
 {
-    TimerClass myTimer_1;	
+    TimerClass myTimer_1;          
     TimerClass myTimer_2;
-    myTimer_2 =	myTimer_1;  
+    myTimer_2 = myTimer_1;  
 
-    TimerClass myTimer_4{myTimer_2};  	
-		
-	
-	return 0;
+    TimerClass myTimer_4{myTimer_2};            
+                    
+          
+    return 0;
 }
