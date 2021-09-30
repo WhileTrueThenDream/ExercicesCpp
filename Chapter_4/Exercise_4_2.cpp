@@ -19,14 +19,12 @@
 #include <unistd.h>
 
 struct TimerClass
-{
-    
+{ 
     TimerClass(void)
     {
         gettimeofday(&s_timestamp,0);    /* it returns an struct with seconds and milliseconds*/
     }
-    
- 
+     
     ~TimerClass(void)
     {
         timeval s_endtime, s_dif; 
@@ -34,9 +32,7 @@ struct TimerClass
         gettimeofday(&s_endtime,0);    /* it returns an struct with seconds and microsenconds*/        
         timersub(&s_endtime ,&s_timestamp , &s_dif);
         
-        printf("Elapsed time:  %lds; %ldms\n", s_dif.tv_sec, s_dif.tv_usec);
-
-        
+        printf("Elapsed time:  %lds; %ldms\n", s_dif.tv_sec, s_dif.tv_usec);  
     }
     
     private:
