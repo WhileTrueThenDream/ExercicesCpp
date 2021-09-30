@@ -67,11 +67,9 @@ struct TimerClass
 int main(void)
 {
     TimerClass myTimer_1;          
-    TimerClass myTimer_2;
-    myTimer_2 = myTimer_1;  
-
-    TimerClass myTimer_4{myTimer_2};            
-                    
-          
+    TimerClass myTimer_2; 
+    TimerClass myTimer_4{myTimer_2};  
+    myTimer_2 = myTimer_1;     
+                             
     return 0;
 }
