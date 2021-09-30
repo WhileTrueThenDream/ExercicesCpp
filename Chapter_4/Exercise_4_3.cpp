@@ -1,12 +1,9 @@
 /*******************************************************
 ** Exercises from book C++ Crash Course by Lospinoso. **
 *******************************************************
-* Exercice 4-4.
+* Exercice 4-3.
 * Implement a copy constructor and a copy assignment operator for TimerClass.
 * The copies should share timestamp values. 
-* 
-* for TimerClass. A moved-from TimerClass shouldnt print any output to
-* the console when it gets destructed.  
      
 * \date last change: 30.09.2021
 * \author            amaia
