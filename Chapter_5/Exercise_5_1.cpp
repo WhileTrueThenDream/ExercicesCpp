@@ -9,18 +9,7 @@
 * \date last change: 03.10.2021
 * \author            amaia
 */
-     
-/*******************************************************
-** Exercises from book C++ Crash Course by Lospinoso. **
-*******************************************************
-* Exercice 5-2.
-* Generate an InMemoryAccountDataBase that implements 
-* AccountDataBase
-     
-* \date last change: 03.10.2021
-* \author            amaia
-*/
-     
+         
 #include <cstdio>
 
 struct AccountDatabase
