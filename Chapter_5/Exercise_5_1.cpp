@@ -26,7 +26,7 @@
 struct AccountDatabase
 {
     virtual ~AccountDatabase() = default;
-    virtual double get_amount(const long account_id) = 0;	
+    virtual double get_amount(const long account_id) = 0;    
     virtual void set_amount(const long account_id, double amount) = 0;
 };
 
@@ -34,11 +34,11 @@ struct Bank
 {
   int make_transfer(long from, long to, double amount) 
   {
-	int ret_val = 0; 
-	
-	printf(" >>> Transfer %f: %ld -> %ld <<<\n", amount, from, to);
-	
-	return ret_val;
+    int ret_val = 0; 
+    
+    printf(" >>> Transfer %f: %ld -> %ld <<<\n", amount, from, to);
+    
+    return ret_val;
   }
 };
 
