@@ -22,21 +22,21 @@ struct InMemoryAccountDatabase: AccountDatabase
 {
     double get_amount(const long account_id) override
 	{
-		double amount = 0;
-		/* check that account_id exists */
-		/* get amount from Data Base ...*/
-		
+        double amount = 0;
+        /* check that account_id exists */
+        /* get amount from Data Base ...*/
+        
 	    amount = 1000;
-		
-		printf("[balance]:account: %ld; balance:  %f\n", account_id, amount);
-		return amount;
+        
+        printf("[balance]:account: %ld; balance:  %f\n", account_id, amount);
+        return amount;
 	}	
 	
 	void set_amount(const long account_id, double amount) override
 	{
-		/* check that account_id exists */
-		printf("[new balance] :account: %ld; balance:  %f\n", account_id, amount);
-		/* set amount in data base */
+        /* check that account_id exists */
+        printf("[new balance] :account: %ld; balance:  %f\n", account_id, amount);
+        /* set amount in data base */
 	}
 };
 
@@ -58,14 +58,14 @@ struct Bank
 	
     if(balance_from >= amount)                    /* check if enough money in account */
 	{
-		dataBase.set_amount(from, (balance_from - amount));  /* substract money from origin*/
+        dataBase.set_amount(from, (balance_from - amount));  /* substract money from origin*/
 	    dataBase.set_amount(to, (balance_to + amount));	  /* add money to destiny */
 	}
 	else
 	{
-		printf("[ERROR]: Balance insufficient \n");
-		printf("         Balance in %ld:  is : %f \n", from, balance_from);
-		printf("         %f could not be transferred \n", amount);
+        printf("[ERROR]: Balance insufficient \n");
+        printf("         Balance in %ld:  is : %f \n", from, balance_from);
+        printf("         %f could not be transferred \n", amount);
 	    ret_val = -1;	                                      /* set error value. */
 	}
     

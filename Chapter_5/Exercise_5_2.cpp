@@ -22,22 +22,22 @@ struct InMemoryAccountDatabase: AccountDatabase
 {
     double get_amount(const long account_id) override
 	{
-		double amount = 0;
-		
-		/* check that account_id exists */
-		/* get amount from Data Base ...*/
-		
+        double amount = 0;
+    
+        /* check that account_id exists */
+        /* get amount from Data Base ...*/
+    
 	    amount = 1000;
-		
-		printf("[balance]:account: %ld; balance:  %f\n", account_id, amount);
-		return amount;
+    
+        printf("[balance]:account: %ld; balance:  %f\n", account_id, amount);
+        return amount;
 	}	
 	
 	void set_amount(const long account_id, double amount) override
 	{
-		/* check that account_id exists */
-		printf("[new balance] :account: %ld; balance:  %f\n", account_id, amount);
-		/* set amount in data base */
+        /* check that account_id exists */
+        printf("[new balance] :account: %ld; balance:  %f\n", account_id, amount);
+        /* set amount in data base */
 	}
 };
 

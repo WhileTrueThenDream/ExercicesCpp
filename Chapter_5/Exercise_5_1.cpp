@@ -27,7 +27,7 @@ struct AccountDatabase
 {
     virtual ~AccountDatabase() = default;
     virtual double get_amount(const long account_id) = 0;	
-	virtual void set_amount(const long account_id, double amount) = 0;
+    virtual void set_amount(const long account_id, double amount) = 0;
 };
 
 struct Bank 
