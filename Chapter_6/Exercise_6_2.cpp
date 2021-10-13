@@ -55,16 +55,16 @@ T mode(const T* values, size_t length)
 int main(void)
 {
     const int size_array = 22;
-	
-	/* array with int values */
+    
+    /* array with int values */
     int array_i[size_array] = {88,25,26,1,0,11,33,5,25,5,6,100,33,21,0,88,22,21,33,21,88,99};
     int val_i = mode<int>(&array_i[0], size_array);
-	printf("\n Mode %d \n\n", val_i);
-	
-	/* array with double values */
-	double array_d[size_array] = {88.2,25.2,26.1,1,0.0,11.6,33,5,25.2,5.3,6.3,100,33,21.2,0,88.2,22,21,33,21,88.2,99};
+    printf("\n Mode %d \n\n", val_i);
+    
+    /* array with double values */
+    double array_d[size_array] = {88.2,25.2,26.1,1,0.0,11.6,33,5,25.2,5.3,6.3,100,33,21.2,0,88.2,22,21,33,21,88.2,99};
     double val_d = mode<double>(&array_d[0], size_array);
     printf("\n Mode %f \n\n", val_d);
-	
-	return 0;
+    
+    return 0;
 }
