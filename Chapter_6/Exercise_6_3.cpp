@@ -17,8 +17,8 @@
 template <typename T>
 concept bool is_nr_int()
 {
-	return (std::is_integral<T>::value);
-		
+    return (std::is_integral<T>::value);
+        
 }
 
 /* functino template definition */
