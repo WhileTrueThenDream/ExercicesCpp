@@ -1,7 +1,7 @@
 /*******************************************************
 ** Exercises from book C++ Crash Course by Lospinoso. **
 ********************************************************
-* Exercice 6-6
+* Exercice 6-7
 * Make account an interface. Implement a CheckingAccount and 
 * SavingsAccount. Create a programm with several checking and 
 * savings accounts. 
@@ -15,16 +15,19 @@
 
 struct Account
 {
-  Account(long id)
-  :id{id}
+  Account(long id):
+  id{id}
   {
     printf("Basic account id %ld \n", id);
   }
-  
+   
   double getBalance(void)
   {
     double balance;
     /* connect to data base and get balance from this account id */
+	/* lets suppose balance in DB is 1000 */
+	balance = 1000; 
+	
     return balance;
   }
   
@@ -33,7 +36,7 @@ struct Account
     /* connect to data base and set balance to this account id */
   }
   
-  void checking(double amount)
+  virtual void checking(double amount)
   {
     double balance = getBalance();
     
@@ -41,8 +44,8 @@ struct Account
     setBalance(balance);
   }
   
-  int withdraw(double amount)
-    {
+  virtual int withdraw(double amount)
+  {
     int ret = 0;
     double balance = getBalance();
     
@@ -58,7 +61,7 @@ struct Account
     return ret;
   }
   
-    long id;  
+  long id;  
 };
 
 struct SavingsAccount : Account
@@ -68,42 +71,59 @@ struct SavingsAccount : Account
    {
      printf("Savings account id: %ld \n", id);
    }
+   
+   int withdraw(double amount) override
+   {
+	 /* not permitted to check money from a savings account!*/ 
+     return -1;	 
+   }
 };
 
-struct FixedDepositAccount : Account
+struct CheckingAccount : Account
 {
-  FixedDepositAccount(long id):
+  CheckingAccount(long id):
     Account{id}
   {
     printf("Fixed Dep. account id: %ld \n", id);
   }
 };
 
-
-template <typename T_AccountType1, typename T_AccountType2>
 struct Bank 
 {
-  Bank()
+  Bank(Account& account_from, Account& account_to):
+  account_from{account_from}, account_to{account_to}
   {
   }
 
-  void make_transfer(T_AccountType1 id_from, T_AccountType2 id_to, double amount) 
+  void make_transfer(double amount) 
   {
-  id_from.withdraw(amount);
-  id_to.checking(amount);
+	
+    if(-1 != account_from.withdraw(amount))
+	{
+      account_to.checking(amount);
+	  printf("money transferred \n");
+	}
+    else
+    {
+		/* Error */
+        printf("Error, operation denied \n");		
+	}
   } 
+  private:
+    Account& account_from;
+    Account& account_to;
 };
 
 int main() 
 {
-  SavingsAccount account_orig(1221);
-  FixedDepositAccount account_dest(2442);
+  SavingsAccount account_1(1221);
+  CheckingAccount account_2(2442);
   
-  Bank<SavingsAccount,FixedDepositAccount> bank{};
-  
+  Bank bank_1{account_1,account_2};
+  Bank bank_2{account_2,account_1};
+  Bank bank_3{account_2,account_2};
 
-  bank.make_transfer(account_orig, account_dest, 49.95);
-  
-  bank.make_transfer(1222, 2222, 49.95);
-
+  bank_1.make_transfer(49.95);   /* from a savings account , withraw denied*/
+  bank_2.make_transfer(49.95);
+  bank_3.make_transfer(2000);   /* try to transfer more money than available */
 }
