@@ -6,7 +6,7 @@
 * SavingsAccount. Create a programm with several checking and 
 * savings accounts. 
      
-* \date last change: 18.10.2021
+* \date last change: 20.10.2021
 * \author            amaia
 * \note, compile   : g++ 
 */
@@ -18,7 +18,7 @@ struct Account
   Account(long id):
   id{id}
   {
-    printf("Basic account id %ld \n", id);
+    //printf("Basic account id %ld \n", id);
   }
    
   double getBalance(void)
@@ -82,31 +82,31 @@ struct SavingsAccount : Account
 struct CheckingAccount : Account
 {
   CheckingAccount(long id):
-    Account{id}
+  Account{id}
   {
     printf("Fixed Dep. account id: %ld \n", id);
   }
 };
 
+/* Bank is an interface */
 struct Bank 
 {
   Bank(Account& account_from, Account& account_to):
-  account_from{account_from}, account_to{account_to}
+  account_from{account_from}, account_to{account_to}  /* constructor injection */
   {
   }
 
   void make_transfer(double amount) 
   {
-	
-    if(-1 != account_from.withdraw(amount))
+    if(-1 != account_from.withdraw(amount)) /* if withdrawal successful then deposit money */
 	{
       account_to.checking(amount);
 	  printf("money transferred \n");
 	}
     else
     {
-		/* Error */
-        printf("Error, operation denied \n");		
+      /* Error */
+      printf("Error, operation denied \n");		
 	}
   } 
   private:
@@ -114,7 +114,7 @@ struct Bank
     Account& account_to;
 };
 
-int main() 
+int main(void) 
 {
   SavingsAccount account_1(1221);
   CheckingAccount account_2(2442);
@@ -125,5 +125,5 @@ int main()
 
   bank_1.make_transfer(49.95);   /* from a savings account , withraw denied*/
   bank_2.make_transfer(49.95);
-  bank_3.make_transfer(2000);   /* try to transfer more money than available */
+  bank_3.make_transfer(2000);    /* try to transfer more money (2000) than available (1000) */
 }
