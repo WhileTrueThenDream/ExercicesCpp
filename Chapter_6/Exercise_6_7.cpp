@@ -88,7 +88,6 @@ struct CheckingAccount : Account
   }
 };
 
-/* Bank is an interface */
 struct Bank 
 {
   Bank(Account& account_from, Account& account_to):
